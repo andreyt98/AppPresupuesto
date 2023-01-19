@@ -1,4 +1,7 @@
-@import "./components/form";
-@import "./base/extends";
+@import "./base/variables";
 @import "./base/globals";
 @import "./base/mixins";
+@import "./base/extends";
+@import "./pages/inicio";
+@import "./components/form";
+@import "./components/logo";

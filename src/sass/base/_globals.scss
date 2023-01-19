@@ -10,9 +10,6 @@
 body {
   font-family: "DM Sans", sans-serif;
 }
-a {
-  text-decoration: none;
-}
 ul {
   list-style: none;
 }
@@ -22,7 +19,9 @@ i {
 }
 
 button {
-  border-radius: 25px;
-  padding: 0.7rem 2.5rem;
+  border-radius: 5px;
+  padding: 0.5rem 2.5rem;
+  background-color: $primary;
   border: none;
+  color: white;
 }
