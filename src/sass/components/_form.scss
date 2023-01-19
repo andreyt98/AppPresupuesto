@@ -1,0 +1,21 @@
+form {
+  box-shadow: 1px 1px 7px $box-shadow;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-radius: 12px;
+
+  input {
+    background-color: $input-background;
+    border: none;
+    padding: 0.3rem;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+  label {
+    width: 100%;
+  }
+}
