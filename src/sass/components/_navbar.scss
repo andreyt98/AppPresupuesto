@@ -1,0 +1,17 @@
+.nav {
+  @extend .flex-row-space-between;
+  background-color: $primary;
+  padding: 0.5rem;
+  #logo {
+    color: white;
+  }
+
+  .links {
+    @extend .flex-row-space-between;
+    gap: 1rem;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
