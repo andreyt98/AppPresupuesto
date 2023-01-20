@@ -4,6 +4,7 @@ import { createUser } from "../firebase/createUser";
 
 const Form = () => {
   const { isRegistering, setIsRegistering } = useContext(Context);
+  const { isUserReady, setIsUserReady } = useContext(Context);
   const [user, setUser] = useState({ email: null, password: null });
 
   const irARegistro = () => {
@@ -13,8 +14,9 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createUser(user);
+    setIsUserReady(true);
   };
-  
+
   return (
     <form
       onSubmit={(event) => {
