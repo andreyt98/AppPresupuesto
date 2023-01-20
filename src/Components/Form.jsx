@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Context } from "../context/Context";
+import { createUser } from "../firebase/createUser";
 
 const Form = () => {
   const { isRegistering, setIsRegistering } = useContext(Context);
@@ -9,8 +10,17 @@ const Form = () => {
     setIsRegistering(!isRegistering);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUser(user);
+  };
+  
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        handleSubmit(event);
+      }}
+    >
       <h2>{isRegistering ? "Registro " : "Inicio de sesión"}</h2>
       <label htmlFor="email">
         Email{" "}
