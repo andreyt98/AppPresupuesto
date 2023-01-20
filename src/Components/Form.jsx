@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { Context } from "../context/Context";
 
 const Form = () => {
   const { isRegistering, setIsRegistering } = useContext(Context);
+  const [user, setUser] = useState({ email: null, password: null });
 
   const irARegistro = () => {
     setIsRegistering(!isRegistering);
@@ -12,11 +13,34 @@ const Form = () => {
     <form>
       <h2>{isRegistering ? "Registro " : "Inicio de sesión"}</h2>
       <label htmlFor="email">
-        Email <input type="email" name="" id="email" placeholder=" Tu email" required />
+        Email{" "}
+        <input
+          type="email"
+          name=""
+          id="email"
+          placeholder=" Tu email"
+          required
+          value={user.email}
+          onChange={(event) => {
+            setUser({ ...user, email: event.target.value });
+          }}
+        />
       </label>
 
       <label htmlFor="password">
-        Password <input type="password" name="" minLength="6" id="password" placeholder=" Tu password" required />
+        Password{" "}
+        <input
+          type="password"
+          name=""
+          minLength="6"
+          id="password"
+          placeholder=" Tu password"
+          required
+          value={user.password}
+          onChange={(event) => {
+            setUser({ ...user, password: event.target.value });
+          }}
+        />
       </label>
 
       <button type="submit">{isRegistering ? "Registrarse" : "Inicio de sesión "}</button>
