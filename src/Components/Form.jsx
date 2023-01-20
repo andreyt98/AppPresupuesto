@@ -2,32 +2,48 @@ import { useContext } from "react";
 import { Context } from "../context/Context";
 
 const Form = () => {
-  const {isRegister, setIsRegister} = useContext(Context);
+  const { isRegistering, setIsRegistering } = useContext(Context);
 
-  const registrarse = () => {
-    setIsRegister(!isRegister);
+  const irARegistro = () => {
+    setIsRegistering(!isRegistering);
   };
+
   return (
     <form>
-        <h2>{isRegister ? "Inicio de sesión" : "Registro"}</h2>
+      <h2>{isRegistering ? "Registro " : "Inicio de sesión"}</h2>
       <label htmlFor="email">
-        Email
-        <input type="email" name="" id="email" placeholder=" your email" />
+        Email <input type="email" name="" id="email" placeholder=" Tu email" required />
       </label>
 
-      <label htmlFor="password">Password
-      <input type="password" name="" id="password" placeholder=" your password" />
+      <label htmlFor="password">
+        Password <input type="password" name="" minLength="6" id="password" placeholder=" Tu password" required />
       </label>
 
-      <button type="submit">{isRegister ? "Iniciar sesión" : "Registrarse"}</button>
+      <button type="submit">{isRegistering ? "Registrarse" : "Inicio de sesión "}</button>
       <p>
-        {isRegister ? (
+        {isRegistering ? (
           <>
-            No tienes una cuenta? <a href="#"onClick={() => {registrarse()}}>Crear nueva cuenta</a>
+            Ya tienes una cuenta?{" "}
+            <a
+              href="#"
+              onClick={() => {
+                irARegistro();
+              }}
+            >
+              Iniciar sesión
+            </a>
           </>
         ) : (
           <>
-            Ya tienes una cuenta? <a href="#"onClick={() => {registrarse()}}>Iniciar sesión</a>
+            No tienes una cuenta?{" "}
+            <a
+              href="#"
+              onClick={() => {
+                irARegistro();
+              }}
+            >
+              Crear nueva cuenta
+            </a>
           </>
         )}
       </p>
