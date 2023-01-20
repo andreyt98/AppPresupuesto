@@ -1,15 +1,16 @@
 import { useState } from "react";
-import Form from "./Components/Form";
 import { Context } from "./context/Context";
+import Inicio from "./pages/Inicio";
 import "./sass/main.scss";
+
 function App() {
 
-  const [isRegister, setIsRegister] = useState(true);
+  const [isRegistering, setIsRegistering] = useState(true);
 
   return (
-    <Context.Provider value ={{isRegister, setIsRegister}}>
+    <Context.Provider value ={{isRegistering, setIsRegistering}}>
       <div className="App">
-        <Form></Form>
+        <Inicio></Inicio>
       </div>
     </Context.Provider>
   );
