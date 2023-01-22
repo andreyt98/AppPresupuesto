@@ -65,54 +65,64 @@ const Form = () => {
       {isRegistering && (
         <label htmlFor="name">
           Nombre
-          <input
-            type="text"
-            name="name"
-            id=""
-            value={user.name}
-            onChange={(event) => {
-              setUser({ ...user, name: event.target.value });
-            }}
-            placeholder="Tu nombre"
-            required
-          />
+          <div className="input">
+            <i className="bi bi-person-fill"></i>
+            <input
+              type="text"
+              name="name"
+              id=""
+              value={user.name}
+              onChange={(event) => {
+                setUser({ ...user, name: event.target.value });
+              }}
+              placeholder="Tu nombre"
+              required
+            />
+          </div>
         </label>
       )}
       <label htmlFor="email">
         Email{" "}
-        <input
-          type="email"
-          name=""
-          id="email"
-          placeholder=" Tu email"
-          required
-          value={user.email}
-          onChange={(event) => {
-            setUser({ ...user, email: event.target.value });
-          }}
-        />
+        <div className="input">
+          <i className="bi bi-envelope-fill"></i>
+          <input
+            type="email"
+            name=""
+            id="email"
+            placeholder=" Tu email"
+            required
+            value={user.email}
+            onChange={(event) => {
+              setUser({ ...user, email: event.target.value });
+            }}
+          />
+        </div>
       </label>
 
       <label htmlFor="password">
         Password{" "}
-        <input
-          type="password"
-          name=""
-          minLength="6"
-          id="password"
-          placeholder=" Tu password"
-          required
-          value={user.password}
-          onChange={(event) => {
-            setUser({ ...user, password: event.target.value });
-          }}
-        />
+        <div className="input">
+          <i className="bi bi-lock-fill"></i>
+          <input
+            type="password"
+            name=""
+            minLength="6"
+            id="password"
+            placeholder=" Tu password"
+            required
+            value={user.password}
+            onChange={(event) => {
+              setUser({ ...user, password: event.target.value });
+            }}
+          />
+          <i class="bi bi-eye-slash-fill"></i>
+        </div>
       </label>
 
-      <button type="submit">{isRegistering ? "Registrarse" : "Inicio de sesión "}</button>
+      <button type="submit">{isRegistering ? "Registrarse" : "Iniciar sesión "}</button>
       {message.active && <Message text={message.text}></Message>}
 
-      <p>
+      <p id="options">
         {isRegistering ? (
           <>
             Ya tienes una cuenta?{" "}
