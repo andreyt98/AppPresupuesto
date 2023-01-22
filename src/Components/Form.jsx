@@ -32,6 +32,22 @@ const Form = () => {
       }}
     >
       <h2>{isRegistering ? "Registro " : "Inicio de sesión"}</h2>
+      {isRegistering && (
+        <label htmlFor="name">
+          Nombre
+          <input
+            type="text"
+            name="name"
+            id=""
+            value={user.name}
+            onChange={(event) => {
+              setUser({ ...user, name: event.target.value });
+            }}
+            placeholder="Tu nombre"
+            required
+          />
+        </label>
+      )}
       <label htmlFor="email">
         Email{" "}
         <input
