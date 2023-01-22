@@ -1,20 +1,28 @@
+import { useEffect } from "react";
 import { useState, useContext } from "react";
 import { Context } from "../context/Context";
 import { createUser } from "../firebase/createUser";
+import Message from "./Message";
 
 const Form = () => {
   const { isRegistering, setIsRegistering } = useContext(Context);
   const { isUserReady, setIsUserReady } = useContext(Context);
-  const [user, setUser] = useState({ email: null, password: null });
-
+  const { user, setUser } = useContext(Context);
+  const { message, setMessage } = useContext(Context);
   const irARegistro = () => {
     setIsRegistering(!isRegistering);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (message.active) {
+        setMessage({ active: false });
+      }
+    }, 3000);
+  }, [message]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUser(user);
-    setIsUserReady(true);
   };
 
   return (
@@ -56,6 +64,8 @@ const Form = () => {
       </label>
 
       <button type="submit">{isRegistering ? "Registrarse" : "Inicio de sesión "}</button>
+      {message.active && <Message text={message.text}></Message>}
+
       <p>
         {isRegistering ? (
           <>
