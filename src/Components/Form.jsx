@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { Context } from "../context/Context";
 import { createUser } from "../firebase/createUser";
 import Message from "./Message";
+import { loginUser } from "../firebase/loginUser";
 
 const Form = () => {
   const { isRegistering, setIsRegistering } = useContext(Context);
@@ -23,6 +24,35 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    isRegistering
+      ? createUser(user).then(
+          (value) => {
+            value.user.displayName = user.name;
+            setIsUserReady(true);
+          },
+          (error) => {
+            switch (error.code) {
+              case "auth/email-already-in-use":
+                setMessage({ active: true, text: "El correo ingresado ya está registrado" });
+                break;
+            }
+          }
+        )
+      : loginUser(user).then(
+          () => {
+            setIsUserReady(true);
+          },
+          (error) => {
+            switch (error.code) {
+              case "auth/user-not-found":
+                setMessage({ active: true, text: "El correo ingresado no existe" });
+                break;
+              case "auth/wrong-password":
+                setMessage({ active: true, text: "La contraseña es incorrecta" });
+                break;
+            }
+          }
+        );
   };
 
   return (
