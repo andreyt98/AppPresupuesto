@@ -5,7 +5,7 @@ import Welcome from "./pages/Welcome";
 import "./sass/main.scss";
 
 function App() {
-  const [isRegistering, setIsRegistering] = useState(true);
+  const [isRegistering, setIsRegistering] = useState(false);
   const [isUserReady, setIsUserReady] = useState(false);
   const [message, setMessage] = useState({active:false,text:null});
   const [user, setUser] = useState({ name:null,email: null, password: null });
