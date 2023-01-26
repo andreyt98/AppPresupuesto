@@ -1,11 +1,11 @@
-import Form from "../Components/Form";
+import WelcomeForm from "../Components/WelcomeForm";
 import Logo from "../Components/Logo";
 
 const Welcome = () => {
   return (
     <section className="inicio">
       <Logo></Logo>
-      <Form></Form>
+      <WelcomeForm></WelcomeForm>
     </section>
   );
 };
