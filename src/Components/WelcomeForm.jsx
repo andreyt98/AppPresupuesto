@@ -121,7 +121,7 @@ const WelcomeForm = () => {
       </label>
 
       <button type="submit">{isRegistering ? "Registrarse" : "Iniciar sesión "}</button>
-      {message.active && <Message text={message.text}></Message>}
+      {message.active && <Message text={message.text} />}
 
       <p id="options">
         {isRegistering ? (

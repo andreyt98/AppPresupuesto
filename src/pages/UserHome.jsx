@@ -9,13 +9,13 @@ const UserHome = () => {
 
   return (
     <section className="user-home">
-      <Navbar></Navbar>
-      {budget.ready || <BudgetForm></BudgetForm>}
+      <Navbar />
+      {budget.ready || <BudgetForm />}
 
       {budget.ready && (
         <>
-          <BudgetCard></BudgetCard>
-          <ExpenseForm></ExpenseForm>
+          <BudgetCard />
+          <ExpenseForm />
         </>
       )}
     </section>
