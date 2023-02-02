@@ -4,15 +4,13 @@ import { Context } from "../context/Context";
 import { createUser } from "../firebase/createUser";
 import Message from "./Message";
 import { loginUser } from "../firebase/loginUser";
+import useForm from "../Hooks/useForm";
 
 const WelcomeForm = () => {
   const { isRegistering, setIsRegistering } = useContext(Context);
   const { isUserReady, setIsUserReady } = useContext(Context);
-  const { user, setUser } = useContext(Context);
+  const [formValues, handleSubmit, handleValuesChange] = useForm({ name: null, email: null, password: null });
   const { message, setMessage } = useContext(Context);
-  const irARegistro = () => {
-    setIsRegistering(!isRegistering);
-  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,12 +20,10 @@ const WelcomeForm = () => {
     }, 3000);
   }, [message]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const logOrRegister = () => {
     isRegistering
-      ? createUser(user).then(
-          (value) => {
-            value.user.displayName = user.name;
+      ? createUser(formValues).then(
+          () => {
             setIsUserReady(true);
           },
           (error) => {
@@ -38,7 +34,7 @@ const WelcomeForm = () => {
             }
           }
         )
-      : loginUser(user).then(
+      : loginUser(formValues).then(
           () => {
             setIsUserReady(true);
           },
@@ -58,7 +54,7 @@ const WelcomeForm = () => {
   return (
     <form
       onSubmit={(event) => {
-        handleSubmit(event);
+        handleSubmit(event, logOrRegister);
       }}
       className="welcome-form"
     >
@@ -72,9 +68,9 @@ const WelcomeForm = () => {
               type="text"
               name="name"
               id=""
-              value={user.name}
+              value={formValues.name}
               onChange={(event) => {
-                setUser({ ...user, name: event.target.value });
+                handleValuesChange(event);
               }}
               placeholder="Tu nombre"
               required
@@ -88,13 +84,13 @@ const WelcomeForm = () => {
           <i className="bi bi-envelope-fill"></i>
           <input
             type="email"
-            name=""
+            name="email"
             id="email"
             placeholder=" Tu email"
             required
-            value={user.email}
+            value={formValues.email}
             onChange={(event) => {
-              setUser({ ...user, email: event.target.value });
+              handleValuesChange(event);
             }}
           />
         </div>
@@ -106,14 +102,14 @@ const WelcomeForm = () => {
           <i className="bi bi-lock-fill"></i>
           <input
             type="password"
-            name=""
+            name="password"
             minLength="6"
             id="password"
             placeholder=" Tu password"
             required
-            value={user.password}
+            value={formValues.password}
             onChange={(event) => {
-              setUser({ ...user, password: event.target.value });
+              handleValuesChange(event);
             }}
           />
           <i class="bi bi-eye-slash-fill"></i>
@@ -130,7 +126,7 @@ const WelcomeForm = () => {
             <a
               href="#"
               onClick={() => {
-                irARegistro();
+                setIsRegistering(!isRegistering);
               }}
             >
               Iniciar sesión
@@ -142,7 +138,7 @@ const WelcomeForm = () => {
             <a
               href="#"
               onClick={() => {
-                irARegistro();
+                setIsRegistering(!isRegistering);
               }}
             >
               Crear nueva cuenta
