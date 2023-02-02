@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState, useContext } from "react";
 import { Context } from "../context/Context";
 import { createUser } from "../firebase/createUser";
@@ -11,14 +10,6 @@ const WelcomeForm = () => {
   const { isUserReady, setIsUserReady } = useContext(Context);
   const [formValues, handleSubmit, handleValuesChange] = useForm({ name: null, email: null, password: null });
   const { message, setMessage } = useContext(Context);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (message.active) {
-        setMessage({ active: false });
-      }
-    }, 3000);
-  }, [message]);
 
   const logOrRegister = () => {
     isRegistering
